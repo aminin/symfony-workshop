@@ -3,6 +3,11 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+parameters:
+    router.options.generator_class:      AppBundle\Routing\UrlGenerator
+    router.options.generator_base_class: AppBundle\Routing\UrlGenerator
+#    routing.loader.class:                AppBundle\Routing\Loader
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
