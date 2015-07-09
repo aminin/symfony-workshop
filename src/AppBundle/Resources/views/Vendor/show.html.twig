@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Поставщик</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>ИД</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Название</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('vendor') }}">
+                Назад к списку поставщиков
+            </a>
+        </li>
+    </ul>
+{% endblock %}

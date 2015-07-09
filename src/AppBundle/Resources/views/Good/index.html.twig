@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1><a href="{{ path('good') }}">Товары</a></h1>
+
+    <div class="search"><b>Поиск</b>:
+        <form method="{{ path('good') }}" style="display: inline-block;">
+            <input type="text" name="q">
+            <input type="submit" value=">>">
+        </form>
+    </div>
+    <div class="categories"><b>Категории</b>:
+        {% for category in categories %}
+            {% if category == currentCategory %}
+                [{{ category.name }}]
+            {% else %}
+                [<a href="{{ path('good', { 'category': category.id }) }}">{{ category.name }}</a>]
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="categories"><b>Поставщики</b>:
+        {% for vendor in vendors %}
+            {% if vendor == currentVendor %}
+                [{{ vendor.name }}]
+            {% else %}
+                [<a href="{{ path('good', { 'vendor': vendor.id }) }}">{{ vendor.name }}</a>]
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <ul>
+        {% for good in pagination %}
+        <li>
+            {{ include('AppBundle::Good/goodDetails.html.twig', { 'entity': good }) }}
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <ul class="record_actions">
+        <li>
+            <a href="/">На главную</a>
+        </li>
+    </ul>
+    {% endblock %}

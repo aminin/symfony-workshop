@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Категория</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>ИД</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Название</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('category') }}">
+            Назад к списку категорий
+        </a>
+    </li>
+</ul>
+{% endblock %}

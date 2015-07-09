@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Поставщики</h1>
+
+    <ul>
+        {% for entity in entities %}
+        <li><a href="{{ path('vendor_show', { 'id': entity.id }) }}">{{ entity.name }}</a>
+            {% endfor %}
+    </ul>
+    <ul class="record_actions">
+        <li>
+            <a href="/">На главную</a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Omlook test{% endblock %}
+
+{% block body %}
+    <h1>Omlook test</h1>
+    <ul>
+        <li><a href="{{ path('good') }}">Товары</a></li>
+        <li><a href="{{ path('category') }}">Категории</a></li>
+        <li><a href="{{ path('vendor') }}">Поставщики</a></li>
+    </ul>
+{% endblock %}

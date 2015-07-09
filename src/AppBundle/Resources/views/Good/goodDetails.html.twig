@@ -1,0 +1,15 @@
+<div class="good">
+    <h3 class="name"><a href="{{ path('good_show', { 'id': entity.id }) }}">{{ entity.name }}</a></h3>
+    <div class="price">Цена: {{ entity.price }}</div>
+    <div class="image">{% if entity.image is empty %}{% else %}<img src="{{ entity.image }}" width="200" />{% endif %}</div>
+    <div class="description">{{ entity.description }}</div>
+    <div class="categories">
+        Категории:
+        <ul>
+            {% for category in entity.categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="vendor">Поставщик: <a href="{{ path('good', { 'vendor': entity.vendor.id }) }}">{{ entity.vendor.name }}</a></div>
+</div>

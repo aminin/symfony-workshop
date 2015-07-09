@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Товар</h1>
+
+    {{ include('AppBundle::Good/goodDetails.html.twig', { 'entity': entity }) }}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('good') }}">
+                Назад к списку товаров
+            </a>
+        </li>
+    </ul>
+{% endblock %}
