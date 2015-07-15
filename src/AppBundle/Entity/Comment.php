@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+//use Foo\PolymorphicBundle\Mapping\Annotation as Polymorphic;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +43,18 @@ class Comment
      */
     private $commentable;
 
+    /**
+     * Эта аннотация аналогична ORM\ManyToOne за исключением поля targetEntity,
+     * которое в данном сулчае означает название полиморфной сущности.
+     *
+     * @Polymorphic\ManyToOne(targetEntity="Commentable", cascade={"all"}, inversedBy="comments")
+     *
+     * Следующие 2 аннотации показаны со значениями по-умолчанию и могут быть опущены
+     *
+     * @Polymorphic\DiscriminatorColumn(name="commentable_type", type="string")
+     * @Polymorphic\JoinColumn(name="commentable_id", referencedColumnName="id")
+     */
+    //private $commentable;
 
     /**
      * Get id

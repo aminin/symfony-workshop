@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,6 +54,7 @@ class GoodController extends Controller
             $goods = $vendor->getGoods();
         } else {
             $repo = $em->getRepository('AppBundle:Good');
+            /** @var EntityRepository $repo */
             $goods = $repo->createQueryBuilder('g');
             if (!empty($q)) {
                 /** @var \Doctrine\ORM\QueryBuilder $goods */

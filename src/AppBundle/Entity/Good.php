@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+//use Foo\PolymorphicBundle\Mapping\Annotation as Polymorphic;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,6 +74,13 @@ class Good
      * @ORM\OneToMany(targetEntity="Comment", cascade={"all"}, mappedBy="commentable")
      */
     private $comments;
+
+    /**
+     * Название полиморфной сущности задаётся через поле polymorphicEntity
+     * Не обязательно реализовывать интерфейс-маркер Commentable, можно добавить в аннотацию поле polymorphicEntity
+     * @Polymorphic\OneToMany(targetEntity="Comment", cascade={"all"}, mappedBy="commentable", polymorphicEntity="Commentable")
+     */
+    //private $comments;
 
     /**
      * Constructor
