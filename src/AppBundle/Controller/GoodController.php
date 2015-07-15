@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Comment;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,7 +96,38 @@ class GoodController extends Controller
 
         return array(
             'entity'      => $entity,
+            'comments'    => $entity->getComments(),
         );
+    }
+
+    /**
+     * Adds a comment for the Good entity.
+     *
+     * @Route("/{id}/comment", name="good_comment")
+     * @Method("POST")
+     */
+    public function commentAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Good')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Good entity.');
+        }
+
+        $author = $request->get('author');
+        $content = $request->get('content');
+
+        $em->persist(
+            (new Comment())
+            ->setAuthor($author)
+            ->setContent($content)
+            ->setCommentable($entity)
+        );
+        $em->flush();
+
+        return $this->redirectToRoute('good_show', ['id' => $id]);
     }
 
     private function getCurrentVendor(Request $request)

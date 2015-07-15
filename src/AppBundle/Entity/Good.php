@@ -68,6 +68,22 @@ class Good
     private $categories;
 
     /**
+     * @var Comment[]
+     *
+     * @ORM\OneToMany(targetEntity="Comment", cascade={"all"}, mappedBy="commentable")
+     */
+    private $comments;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -203,15 +219,58 @@ class Good
     }
 
     /**
-     * Set categories
+     * Add categories
      *
-     * @param Category[] $categories
+     * @param \AppBundle\Entity\Category $categories
      * @return Good
      */
-    public function setCategories($categories)
+    public function addCategory(\AppBundle\Entity\Category $categories)
     {
-        $this->categories = $categories;
+        $this->categories[] = $categories;
 
         return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     * @return Good
+     */
+    public function addComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

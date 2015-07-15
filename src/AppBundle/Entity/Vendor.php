@@ -29,7 +29,7 @@ class Vendor
     private $name;
 
     /**
-     * @var Vendor
+     * @var Good[]
      *
      * @ORM\OneToMany(targetEntity="Good", cascade={"all"}, mappedBy="vendor")
      */

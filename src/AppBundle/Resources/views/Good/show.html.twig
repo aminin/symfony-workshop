@@ -11,4 +11,18 @@
             </a>
         </li>
     </ul>
+
+    <h2>Комменты</h2>
+    <dl class="comments">
+        {% for comment in comments %}
+            <dt>Автор:</dt><dd>{{ comment.author }}</dd>
+            <dt>Коммент:</dt><dd>{{ comment.content }}</dd>
+        {% endfor %}
+    </dl>
+    <h2>Добавить коммент</h2>
+    <form action="{{ path('good_comment', { 'id': entity.id }) }}" method="post">
+        <input name="author" type="text" placeholder="Автор"><br>
+        <textarea name="content" placeholder="Коммент"></textarea><br>
+        <input type="submit" value="Добавить коммент">
+    </form>
 {% endblock %}

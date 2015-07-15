@@ -4,8 +4,8 @@ imports:
     - { resource: services.yml }
 
 parameters:
-    router.options.generator_class:      AppBundle\Routing\UrlGenerator
-    router.options.generator_base_class: AppBundle\Routing\UrlGenerator
+    router.options.generator_class:      AppBundle\Routing\LocalePrefixedUrlGenerator
+    router.options.generator_base_class: AppBundle\Routing\LocalePrefixedUrlGenerator
 #    routing.loader.class:                AppBundle\Routing\Loader
 
 framework:
