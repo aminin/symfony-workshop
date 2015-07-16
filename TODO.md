@@ -22,29 +22,25 @@ WHERE c.entity_id = 123
 
 Добавим сущность *поставщик* сделаем её комментируемой.
 
-* `Vendor has_many Comment as commentable`
-* `Good has_many Comment as commentable`
-* `Comment belongs_to commentable ploymorphic: true`
-
 Запросы на выборку сущностей станут такими:
 
 ```sql
 -- Выбрать все комменты вместе с товаром или поставщиком
 SELECT *
 FROM comments AS c 
-INNER JOIN good AS g ON c.commentable_id = g.id 
+INNER JOIN good AS g ON c.commentable_id = g.id AND c.commentable_type IN ('Good', 'Vendor')
 ```
 
 ```sql
 -- Выбрать комменты товара
 SELECT * FROM comments AS c 
-WHERE c.commentable_id = 123 c.commentable_type IN ('Good', 'Vendor')
+WHERE c.commentable_id = 123 AND c.commentable_type = 'Good'
 ```
 
 ```sql
 -- Выбрать комменты поставщика
 SELECT * FROM comments AS c 
-WHERE c.commentable_id = 123 c.commentable_type = 'Vendor'
+WHERE c.commentable_id = 123 AND c.commentable_type = 'Vendor'
 ```
 
 это полиморфная связь.
